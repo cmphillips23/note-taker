@@ -31,7 +31,12 @@ function createNewNote(body, notes) {
 };
 
 app.get('/api/notes', (req, res) => {
-  res.json(notes);
+  fs.readFile('./db/db.json', (err, data) => {
+    if (err) throw err;
+
+    let notes = JSON.parse(data);    
+    res.json(notes);
+  });
 });
 
 app.post('/api/notes', (req, res) => {
