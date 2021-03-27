@@ -5,6 +5,11 @@ module.exports = (app) => {
     app.get('/api', (req, res) => {
         res.send("api routes are cool");
     });
+
+    app.post('/api/notes', (req, res) => {
+        let note = { title: req.body.title, text: req.body.text, id: shortid.generate() }
+        console.log(note);
+    });
 };
 
 /* function createNewNote(body, notes) {
