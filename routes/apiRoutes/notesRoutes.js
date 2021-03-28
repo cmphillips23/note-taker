@@ -2,7 +2,7 @@ const fs = require('fs');
 const shortid = require('shortid');
 
 module.exports = (app) => {
-    app.get('/api', (req, res) => {
+    app.get('/api/notes', (req, res) => {
         
         fs.readFile('./db/db.json', (err, data) => {
             if (err) throw err;
