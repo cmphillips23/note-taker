@@ -1,6 +1,8 @@
 const express = require('express');
 const PORT = process.env.port || 3001;
 const app = express();
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 
 // Express middleware
@@ -8,8 +10,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 
-require('./routes/htmlRoutes')(app);
-require('./routes/apiRoutes/notesRoutes')(app);
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // Default response for any other request(Not Found) Catch all
 app.use((req, res) => {
